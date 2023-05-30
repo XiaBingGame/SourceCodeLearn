@@ -1,15 +1,22 @@
 # OpenSceneGraph 3.0 - Beginner's Guide 源码
 * 03_MonitorRFC
-	- 查看引用计数的变化
-	- osg::Referenced::referenceCount() --- 查看引用计数
+	- 从 osg::Referenced 派生可以获取引用计数的功能
+	- osg::Referenced::referenceCount() ---  可以获取其引用计数
 * 03_ReadFromCommandLine
 	- 从命令行读取文件
 	- osg::ArgumentParser
+		- read() 功能
+```
+	osg::ArgumentParser arguments(&argc, argv);
+	std::string filename;
+	arguments.read("--model", filename);
+```
 * 03_RedirectNotifier
 	- 设置输出调试信息到文件
 	- 派生类 osg::NotifyHandler
 		- 重写 notify() 方法
-	- osg::setNotifyLevel() / osg::setNotifyHandler() 方法
+	- osg::setNotifyLevel(): 设置日志输出级别
+	- osg::setNotifyHandler(): 设置输出的处理类
 * 04_ColoredQuad
 	- 绘制一个四边形
 	- Geode
@@ -18,11 +25,44 @@
 			- NormalArray
 			- ColorArray
 			- PrimitiveSet
+```
+	// 创建一个四边形的 geode
+	osg::ref_ptr<osg::Geometry> geom = new osg::Geometry;
+	osg::ref_ptr<osg::Vec3Array> verts = new osg::Vec3Array;
+	verts->push_back(osg::Vec3(0.0f, 0.0f, 0.0f));
+	verts->push_back(osg::Vec3(1.0f, 0.0f, 0.0f));
+	verts->push_back(osg::Vec3(1.0f, 0.0f, 1.0f));
+	verts->push_back(osg::Vec3(0.0f, 0.0f, 1.0f));
+	osg::ref_ptr<osg::Vec3Array> normals = new osg::Vec3Array;
+	normals->push_back(osg::Vec3(0.0f, -1.0f, 0.0f));
+	osg::ref_ptr<osg::Vec3Array> colors = new osg::Vec3Array;
+	colors->push_back(osg::Vec3(1.0f, 0.0f, 0.0f));
+	colors->push_back(osg::Vec3(0.0f, 1.0f, 0.0f));
+	colors->push_back(osg::Vec3(0.0f, 0.0f, 1.0f));
+	colors->push_back(osg::Vec3(1.0f, 1.0f, 1.0f));
+	geom->setVertexArray(verts.get());
+	geom->setNormalArray(normals.get());
+	geom->setColorArray(colors.get());
+	geom->setNormalBinding(osg::Geometry::BIND_OVERALL);
+	geom->setColorBinding(osg::Geometry::BIND_PER_VERTEX);
+	geom->addPrimitiveSet(new osg::DrawArrays(GL_QUADS, 0, 4));
+	osg::ref_ptr<osg::Geode> geode = new osg::Geode;
+	geode->addDrawable(geom.get());
+```
 * 04_DrawOctahedron
 	- 绘制一个多面体, 主要是讲图元, osg::DrawElementsUInt 可以创建一个索引数组, geometry 调用 addPrimitiveSet() 添加它.
 	- osgUtil::SmoothingVisitor::smooth 平滑一个几何体, 主要是可以为一个几何体生成法线
+```
+	osg::ref_ptr<osg::Geometry> geom = new osg::Geometry;
+	geom->setVertexArray(vertices.get());
+	geom->addPrimitiveSet(indices.get());
+	osgUtil::SmoothingVisitor::smooth(*geom);
+
+	osg::ref_ptr<osg::Geode> geode = new osg::Geode;
+	geode->addDrawable(geom.get());
+```
 * 04_OpenGLTeapot
-	- 自定义 drawable, 进行自定义绘制
+	- 自定义 drawable, 进行自定义绘制, 从 osg::Drawable 派生， 重写下面的两个函数即可实现
 	- osg::Drawable::computeBound() --- 返回对应的围绕盒
 	- osg::Drawable::drawImplementation() --- 绘制部分， 其内可以调用opengl的相关函数进行绘制。
 * 04_PrimitiveFunctor
