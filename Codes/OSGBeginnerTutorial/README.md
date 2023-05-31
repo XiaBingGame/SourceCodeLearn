@@ -66,15 +66,31 @@
 	- osg::Drawable::computeBound() --- 返回对应的围绕盒
 	- osg::Drawable::drawImplementation() --- 绘制部分， 其内可以调用opengl的相关函数进行绘制。
 * 04_PrimitiveFunctor
-	- 仿函数, 可以统计多边形面信息
+	- 仿函数, 可以统计多边形面信息, 写一个 operator 用于其他的仿函数继承
 	- 本例介绍了 osg::TriangleFunctor, 这里使用其打印面信息，调用模板类的 operator() 函数进行自定义操作, osg::TriangleFunctor 在模拟绘制三角形时调用.
-	- 主要原理 osg::Drawable::accept(Functor), 使用 Functor 的函数代替 OpenGL 的绘制函数。
+	- 主要原理 osg::Drawable::accept(Functor), 使用 Functor 的 operator() 从模板类中继承
 * 04_SimpleObject
 	- 几个简单的形状 box, sphere, cone
 	- osg::ShapeDrawable::setShape()
+	- geode 可以添加多个几何体，几何体也为 Drawable 的派生类
+```
+	osg::ref_ptr<osg::ShapeDrawable> shape1 = new osg::ShapeDrawable;
+	osg::ref_ptr<osg::ShapeDrawable> shape2 = new osg::ShapeDrawable;
+	osg::ref_ptr<osg::ShapeDrawable> shape3 = new osg::ShapeDrawable;
+	shape1->setShape(new osg::Box(osg::Vec3(-3.0f, 0.0f, 0.0f), 2.0f, 2.0f, 1.0f));
+	shape2->setShape(new osg::Sphere(osg::Vec3(3.0f, 0.0f, 0.0f), 1.0f));
+	shape3->setShape(new osg::Cone(osg::Vec3(0.0f, 0.0f, 0.0f), 1.0f, 1.0f));
+	shape2->setColor(osg::Vec4(0.0f, 0.0f, 1.0f, 1.0f));
+	shape3->setColor(osg::Vec4(0.0f, 1.0f, 0.0f, 1.0f));
+
+	osg::ref_ptr<osg::Geode> geode = new osg::Geode;
+	geode->addDrawable(shape1.get());
+	geode->addDrawable(shape2.get());
+	geode->addDrawable(shape3.get());
+```
 * 04_TessellatePolygon
 	- 凹多边形转凸多边形(分形化一个 Geometry)
-	- osgUtil::Tessellator
+	- osgUtil::Tessellator: 分形化一个包含多边形边的几何体
 		- retessellatePolygons() 分形化一个几何体
 * 05_AddModel
 	- osg::Group::addChild
@@ -82,7 +98,7 @@
 	- 遍历节点, 打印出其库名和类名
 	- 从 osg::NodeVisitor 派生
 		- 构造函数设置遍历模式 setTraversalMode(), 本例使用 osg::NodeVisitor::TRAVERSE_ALL_CHILDREN.
-		- 重写 apply 函数
+		- 重写 apply 函数, 分别处理 osg::Node& node 和 osg::Geode& geode, 注意函数最后要调用 traverse() 方法
 		- osg::Object::libraryName() 输出库名, osg::Object::className() 输出类名
 		- osg::Geode::getNumDrawables() 获取所有可绘制对象的数量, osg::Geode::getDrawable() 获取某个可绘制对象.
 * 05_LodNode
