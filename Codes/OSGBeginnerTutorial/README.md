@@ -1,8 +1,80 @@
+<!-- vscode-markdown-toc -->
+* 1. [Chapter 03 Creating Your First OSG Program](#Chapter03CreatingYourFirstOSGProgram)
+	* 1.1. [03_MonitorRFC](#MonitorRFC)
+	* 1.2. [03_ReadFromCommandLine](#ReadFromCommandLine)
+	* 1.3. [03_RedirectNotifier](#RedirectNotifier)
+* 2. [Chapter 04 Building Geometry Models](#Chapter04BuildingGeometryModels)
+	* 2.1. [04_ColoredQuad](#ColoredQuad)
+	* 2.2. [04_DrawOctahedron](#DrawOctahedron)
+	* 2.3. [04_OpenGLTeapot](#OpenGLTeapot)
+	* 2.4. [04_PrimitiveFunctor](#PrimitiveFunctor)
+	* 2.5. [04_SimpleObject](#SimpleObject)
+	* 2.6. [04_TessellatePolygon](#TessellatePolygon)
+	* 2.7. [05_AddModel](#AddModel)
+* 3. [Chapter 05 Managing Scene Graph](#Chapter05ManagingSceneGraph)
+	* 3.1. [05_AnalyzeStructure](#AnalyzeStructure)
+	* 3.2. [05_LodNode](#LodNode)
+	* 3.3. [05_ProxyNode](#ProxyNode)
+	* 3.4. [05_SwitchAnimate](#SwitchAnimate)
+	* 3.5. [05_SwitchNode](#SwitchNode)
+	* 3.6. [05_TranslateNode](#TranslateNode)
+* 4. [Creating Realistic Rendering Effects](#CreatingRealisticRenderingEffects)
+	* 4.1. [06_BezierCurve](#BezierCurve)
+	* 4.2. [06_CartoonCow](#CartoonCow)
+	* 4.3. [06_Fog](#Fog)
+	* 4.4. [06_Lighting](#Lighting)
+	* 4.5. [06_PolygonMode](#PolygonMode)
+	* 4.6. [06_StateSetInherit](#StateSetInherit)
+	* 4.7. [06_Texture2D](#Texture2D)
+	* 4.8. [06_Translucent --- 创建透明物体](#Translucent---)
+* 5. [Chapter 07 Viewing the World](#Chapter07ViewingtheWorld)
+	* 5.1. [07_FrameLoop](#FrameLoop)
+	* 5.2. [07_HUD](#HUD)
+	* 5.3. [07_MultipleScene(多窗口场景)](#MultipleScene)
+	* 5.4. [07_MultiSampling(多重采样)](#MultiSampling)
+	* 5.5. [07_RTT(渲染到纹理)](#RTT)
+* 6. [Chapter 08 Animating Scene Objects](#Chapter08AnimatingSceneObjects)
+	* 6.1. [08_AnimateCharacter](#AnimateCharacter)
+	* 6.2. [08_AnimationChannel](#AnimationChannel)
+	* 6.3. [08_AnimationPath](#AnimationPath)
+	* 6.4. [08_FadingIn](#FadingIn)
+	* 6.5. [08_Flashing](#Flashing)
+	* 6.6. [08_GeometryDynamically](#GeometryDynamically)
+	* 6.7. [08_SwitchUpdate](#SwitchUpdate)
+* 7. [Chapter 09 Interacting with Outside Elements](#Chapter09InteractingwithOutsideElements)
+	* 7.1. [09_DrivingCessna](#DrivingCessna)
+	* 7.2. [09_GCTraits](#GCTraits)
+	* 7.3. [09_PickingGeometry --- 选择框](#PickingGeometry---)
+	* 7.4. [09_UserTimer --- 可以添加一个用户事件](#UserTimer---)
+	* 7.5. [09_Win32Handler --- Win32 API 和 osg](#Win32Handler---Win32APIosg)
+* 8. [Chapter 10 Saving and Loading Files](#Chapter10SavingandLoadingFiles)
+	* 8.1. [10_CustomFormat --- 自定义格式插件读写](#CustomFormat---)
+* 9. [Chapter 11 Developing Visual Components](#Chapter11DevelopingVisualComponents)
+	* 9.1. [11_Billboard 公告板](#Billboard)
+	* 9.2. [11_Outline 给物体添加轮廓线效果.](#Outline.)
+	* 9.3. [11_ParticleSystem 粒子系统](#ParticleSystem)
+	* 9.4. [11_Shadow 阴影效果](#Shadow)
+	* 9.5. [11_Text 输出文字](#Text)
+	* 9.6. [11_Text3D --- 3D 字体, 当成一个 3D 模型](#Text3D---3D3D)
+* 10. [Chapter 12 Improving Rendering Efficiency](#Chapter12ImprovingRenderingEfficiency)
+	* 10.1. [12_MultiThread --- 多线程程序](#MultiThread---)
+	* 10.2. [12_Occluder](#Occluder)
+	* 10.3. [12_QuadTree --- 使用 pageLOD 创建四叉树](#QuadTree---pageLOD)
+	* 10.4. [12_SharingTexture](#SharingTexture)
+	* 10.5. [12_ThreadingModel](#ThreadingModel)
+
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+
 # OpenSceneGraph 3.0 - Beginner's Guide 源码
-* 03_MonitorRFC
+##  1. <a name='Chapter03CreatingYourFirstOSGProgram'></a>Chapter 03 Creating Your First OSG Program
+###  1.1. <a name='MonitorRFC'></a>03_MonitorRFC
 	- 从 osg::Referenced 派生可以获取引用计数的功能
 	- osg::Referenced::referenceCount() ---  可以获取其引用计数
-* 03_ReadFromCommandLine
+###  1.2. <a name='ReadFromCommandLine'></a>03_ReadFromCommandLine
 	- 从命令行读取文件
 	- osg::ArgumentParser
 		- read() 功能
@@ -11,13 +83,15 @@
 	std::string filename;
 	arguments.read("--model", filename);
 ```
-* 03_RedirectNotifier
+###  1.3. <a name='RedirectNotifier'></a>03_RedirectNotifier
 	- 设置输出调试信息到文件
 	- 派生类 osg::NotifyHandler
 		- 重写 notify() 方法
 	- osg::setNotifyLevel(): 设置日志输出级别
 	- osg::setNotifyHandler(): 设置输出的处理类
-* 04_ColoredQuad
+
+##  2. <a name='Chapter04BuildingGeometryModels'></a>Chapter 04 Building Geometry Models
+###  2.1. <a name='ColoredQuad'></a>04_ColoredQuad
 	- 绘制一个四边形
 	- Geode
 		- Geometry
@@ -49,7 +123,7 @@
 	osg::ref_ptr<osg::Geode> geode = new osg::Geode;
 	geode->addDrawable(geom.get());
 ```
-* 04_DrawOctahedron
+###  2.2. <a name='DrawOctahedron'></a>04_DrawOctahedron
 	- 绘制一个多面体, 主要是讲图元, osg::DrawElementsUInt 可以创建一个索引数组, geometry 调用 addPrimitiveSet() 添加它.
 	- osgUtil::SmoothingVisitor::smooth 平滑一个几何体, 主要是可以为一个几何体生成法线
 ```
@@ -61,15 +135,15 @@
 	osg::ref_ptr<osg::Geode> geode = new osg::Geode;
 	geode->addDrawable(geom.get());
 ```
-* 04_OpenGLTeapot
+###  2.3. <a name='OpenGLTeapot'></a>04_OpenGLTeapot
 	- 自定义 drawable, 进行自定义绘制, 从 osg::Drawable 派生， 重写下面的两个函数即可实现
 	- osg::Drawable::computeBound() --- 返回对应的围绕盒
 	- osg::Drawable::drawImplementation() --- 绘制部分， 其内可以调用opengl的相关函数进行绘制。
-* 04_PrimitiveFunctor
+###  2.4. <a name='PrimitiveFunctor'></a>04_PrimitiveFunctor
 	- 仿函数, 可以统计多边形面信息, 写一个 operator 用于其他的仿函数继承
 	- 本例介绍了 osg::TriangleFunctor, 这里使用其打印面信息，调用模板类的 operator() 函数进行自定义操作, osg::TriangleFunctor 在模拟绘制三角形时调用.
 	- 主要原理 osg::Drawable::accept(Functor), 使用 Functor 的 operator() 从模板类中继承
-* 04_SimpleObject
+###  2.5. <a name='SimpleObject'></a>04_SimpleObject
 	- 几个简单的形状 box, sphere, cone
 	- osg::ShapeDrawable::setShape()
 	- geode 可以添加多个几何体，几何体也为 Drawable 的派生类
@@ -88,100 +162,358 @@
 	geode->addDrawable(shape2.get());
 	geode->addDrawable(shape3.get());
 ```
-* 04_TessellatePolygon
+###  2.6. <a name='TessellatePolygon'></a>04_TessellatePolygon
 	- 凹多边形转凸多边形(分形化一个 Geometry)
 	- osgUtil::Tessellator: 分形化一个包含多边形边的几何体
 		- retessellatePolygons() 分形化一个几何体
-* 05_AddModel
+###  2.7. <a name='AddModel'></a>05_AddModel
 	- osg::Group::addChild
-* 05_AnalyzeStructure
-	- 遍历节点, 打印出其库名和类名
-	- 从 osg::NodeVisitor 派生
-		- 构造函数设置遍历模式 setTraversalMode(), 本例使用 osg::NodeVisitor::TRAVERSE_ALL_CHILDREN.
+
+##  3. <a name='Chapter05ManagingSceneGraph'></a>Chapter 05 Managing Scene Graph
+###  3.1. <a name='AnalyzeStructure'></a>05_AnalyzeStructure
+	- 遍历节点, 打印出其内部的库名和类名
+	- 从 osg::NodeVisitor 派生一个 Visitor
+		- 构造函数设置遍历模式 setTraversalMode(), 本例使用 osg::NodeVisitor::TRAVERSE_ALL_CHILDREN 遍历所有子节点
 		- 重写 apply 函数, 分别处理 osg::Node& node 和 osg::Geode& geode, 注意函数最后要调用 traverse() 方法
 		- osg::Object::libraryName() 输出库名, osg::Object::className() 输出类名
-		- osg::Geode::getNumDrawables() 获取所有可绘制对象的数量, osg::Geode::getDrawable() 获取某个可绘制对象.
-* 05_LodNode
-	- osgUtil::Simplifier --- 简化几何体
-	- osg::LOD --- addChild, 添加子节点。
-* 05_ProxyNode
+		- osg::Geode::getNumDrawables() 获取 Geode 所有可绘制对象的数量, osg::Geode::getDrawable() 获取某个可绘制对象.
+###  3.2. <a name='LodNode'></a>05_LodNode
+	- osgUtil::Simplifier --- 简化一个节点
+```
+osgUtil::Simplifier simplifier;
+simplifier.setSampleRatio(0.5);
+model2->accept(simplifier);
+```
+	- osg::LOD --- addChild, 添加子节点, 根据距离设置节点
+###  3.3. <a name='ProxyNode'></a>05_ProxyNode
 	- osg::ProxyNode
 		- setFileName --- 显示的时候再加载
-* 05_SwitchAnimate
+###  3.4. <a name='SwitchAnimate'></a>05_SwitchAnimate
 	- osg::Switch
 		- setValue 设置可见性
-		- 重写 osg::Switch::traverse 方法, 其在各种遍历会调用, 如更新遍历, 剔除遍历
-	- 本例通过遍历次数实现动画
-* 05_SwitchNode
+		- 重写 osg::Switch::traverse() 方法, 其在各种遍历会调用, 如更新遍历, 剔除遍历
+	- 本例通过遍历次数实现自动切换模型
+###  3.5. <a name='SwitchNode'></a>05_SwitchNode
 	- osg::Switch
-		- addChild 方法
-* 05_TranslateNode
-	- osg::MatrixTransform
+		- addChild 方法, 添加节点时设置其可见状态
+###  3.6. <a name='TranslateNode'></a>05_TranslateNode
+	- osg::MatrixTransform 矩阵变换节点
 		- setMatrix
 	- osg::Matrix::translate
-* 06_BezierCurve
-	- 使用几何着色器创建贝塞尔曲线， 几何着色器插值生成顶点
-	- 设置输出类型为 GL_LINE_STRIP， 输入类型为 GL_LINES_ADJACENCY_EXT
+
+##  4. <a name='CreatingRealisticRenderingEffects'></a>Creating Realistic Rendering Effects
+###  4.1. <a name='BezierCurve'></a>06_BezierCurve
+	- 使用几何着色器(Geometry)创建贝塞尔曲线， 几何着色器插值生成顶点
+	- 设置图元类型为 GL_LINE_STRIP， 其在几何着色器的输入类型为 GL_LINES_ADJACENCY_EXT
 		- 通过 osg::Program::setParameter 设置参数, 本例三个参数 GL_GEOMETRY_VERTICES_OUT_EXT 和 GL_GEOMETRY_INPUT_TYPE_EXT, GL_GEOMETRY_OUTPUT_TYPE_EXT
 	- 使用 line adjacency 图元作为输入, 该输入有四个元素
-* 06_CartoonCow
+	- osg::LineWidth 设置线宽
+	- 实现如下
+```
+// 1. 创建几何体， 四个控制点构成 LINES ADJACENCY 图元
+	osg::ref_ptr<osg::Vec3Array> vertices = new osg::Vec3Array;
+	vertices->push_back(osg::Vec3(0.0f, 0.0f, 0.0f));
+	vertices->push_back(osg::Vec3(1.0f, 1.0f, 1.0f));
+	vertices->push_back(osg::Vec3(2.0f, 1.0f, -1.0f));
+	vertices->push_back(osg::Vec3(3.0f, 0.0f, 0.0f));
+	osg::ref_ptr<osg::Geometry> controlPoints = new osg::Geometry;
+	controlPoints->setVertexArray(vertices.get());
+	controlPoints->addPrimitiveSet(
+		new osg::DrawArrays(GL_LINES_ADJACENCY_EXT, 0, 4));
+	osg::ref_ptr<osg::Geode> geode = new osg::Geode;
+	geode->addDrawable(controlPoints.get());
+
+// 2. 顶点着色器仅仅是传递每个顶点的位置
+	#version 120
+	#extension GL_EXT_geometry_shader4 : enable
+	void main()
+	{ gl_Position = ftransform(); }
+
+// 3. 几何着色器, 发送 segments 个顶点， 根据四个控制点生成 segment 个顶点的位置。
+	#version 120
+	#extension GL_EXT_geometry_shader4 : enable
+	uniform int segments;
+	void main(void)
+	{
+	    float delta = 1.0 / float(segments);
+	    vec4 v;
+	    for ( int i=0; i<=segments; ++i )
+	    {
+	        float t = delta * float(i);
+	        float t2 = t * t;
+	        float one_minus_t = 1.0 - t;
+	        float one_minus_t2 = one_minus_t * one_minus_t;
+	        v = gl_PositionIn[0] * one_minus_t2 * one_minus_t + 
+	            gl_PositionIn[1] * 3.0 * t * one_minus_t2 +
+	            gl_PositionIn[2] * 3.0 * t2 * one_minus_t +
+	            gl_PositionIn[3] * t2 * t;
+	        gl_Position = v;
+	        EmitVertex();
+	    }
+	    EndPrimitive();
+	}
+
+// 4. 设置着色器和几何着色器的输入输出类型和顶点输出的数量
+	int segments = 10;
+	osg::ref_ptr<osg::Program> program = new osg::Program;
+	program->addShader(
+		new osg::Shader(osg::Shader::VERTEX, vertSource));
+	program->addShader(
+		new osg::Shader(osg::Shader::GEOMETRY, geomSource));
+	program->setParameter(GL_GEOMETRY_VERTICES_OUT_EXT, segments + 1);
+	program->setParameter(GL_GEOMETRY_INPUT_TYPE_EXT,
+		GL_LINES_ADJACENCY_EXT);
+	program->setParameter(GL_GEOMETRY_OUTPUT_TYPE_EXT,
+		GL_LINE_STRIP);
+```
+###  4.2. <a name='CartoonCow'></a>06_CartoonCow
 	- 使用着色器进行卡通着色
-* 06_Fog
-	- Fog 的使用
+	- 通过光照方向和法线的点乘结果确定颜色
+###  4.3. <a name='Fog'></a>06_Fog
+	- osg::Fog 的使用
 		- setMode，setStart，setEnd，setColor
-* 06_Lighting
-	- 创建 osg::LightSource --- 光源实体
+###  4.4. <a name='Lighting'></a>06_Lighting
+	- osg::Light 从 osg::StateAttribute 派生
+		- setLightNum() --- 设置用的是 OpenGL 的哪个光源
+		- setDiffuse / setPosition
+	- 创建 osg::LightSource --- 光源实体, 从 osg::Group 派生而来, 定义场景中的一个光源
 		- 创建 osg::Light --- 光源属性
 		- setLight
-			- setLightNum --- 设置光源序号
-		- 将 LightSource 添加至场景中
-* 06_PolygonMode
+	- 用 osg::MatrixTransform 将 LightSource 添加至场景中
+```
+// 光照打开和关掉
+	root->getOrCreateStateSet()->setMode(GL_LIGHT0,
+		osg::StateAttribute::ON);
+	root->getOrCreateStateSet()->setMode(GL_LIGHT1,
+		osg::StateAttribute::ON);
+```
+###  4.5. <a name='PolygonMode'></a>06_PolygonMode
 	- 线框模式绘制
 	- osg::PolygonMode
 		- setMode
-* 06_StateSetInherit
-	- 状态属性的继承关系
-	-  osg::StateAttribute::OVERRIDE，osg::StateAttribute::PROTECTED
-* 06_Texture2D
+```
+	osg::ref_ptr<osg::PolygonMode> pm = new osg::PolygonMode;
+	pm->setMode(osg::PolygonMode::FRONT_AND_BACK, osg::PolygonMode::LINE);
+	transform1->getOrCreateStateSet()->setAttribute(pm.get());
+```
+###  4.6. <a name='StateSetInherit'></a>06_StateSetInherit
+	- 演示状态属性的继承关系
+	- osg::StateAttribute::OVERRIDE，
+	- osg::StateAttribute::PROTECTED 可以无视上一级的状态
+###  4.7. <a name='Texture2D'></a>06_Texture2D
 	- 创建一个四边形，然后贴上纹理
-* 06_Translucent --- 创建透明物体
+	- osg::Texture2D
+		- setImage
+###  4.8. <a name='Translucent---'></a>06_Translucent --- 创建透明物体
 	- 创建球体几何体
 	- osg::BlendFunc
-* 07_FrameLoop
-	- 本例演示输出帧号
+```
+// 设置混合属性
+	osg::ref_ptr<osg::BlendFunc> blendFunc = new osg::BlendFunc;
+	blendFunc->setFunction(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	osg::StateSet* stateset = root->getOrCreateStateSet();
+	stateset->setAttributeAndModes(blendFunc);
+	stateset->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
+	//stateset->setMode(GL_CULL_FACE, osg::StateAttribute::ON);
+	stateset->setMode(GL_DEPTH_TEST, osg::StateAttribute::OFF);
+	stateset->setRenderingHint(osg::StateSet::TRANSPARENT_BIN);
+```
+	- 创建一个球体
+```
+osg::Geode* createSphere(int slices, int stacks, GLfloat radius)
+{
+	osg::ref_ptr<osg::Vec3Array> vertices = new osg::Vec3Array;
+	osg::ref_ptr<osg::Vec3Array> normals = new osg::Vec3Array;
+	
+	float horz_angle_step = osg::PI * 2.0 / stacks;
+	float vert_angle_step = osg::PI / slices;
+	float start_vert_angle = -osg::PI_2;
+	for (int i = 1; i < slices-1; i++)
+	{
+		float cur_vert_angle = start_vert_angle + i * vert_angle_step;
+		float nxt_vert_angle = start_vert_angle + (i + 1)*vert_angle_step;
+		float bottom_height = sin(cur_vert_angle) * radius;
+		float top_height = sin(nxt_vert_angle) * radius;
+		float bottom_radius = cos(cur_vert_angle) * radius;
+		float top_radius = cos(nxt_vert_angle) * radius;
+		float bottom_sin = sin(cur_vert_angle);
+		float top_sin = sin(nxt_vert_angle);
+		float bottom_cos = cos(cur_vert_angle);
+		float top_cos = cos(nxt_vert_angle);
+		for (int j = 0; j < stacks; j++)
+		{
+			float cur_horz_angle = j * horz_angle_step;
+			float nxt_horz_angle = (j + 1) * horz_angle_step;
+
+			float cur_normal_x = cos(cur_horz_angle);
+			float cur_normal_y = sin(cur_horz_angle);
+			float nxt_normal_x = cos(nxt_horz_angle);
+			float nxt_normal_y = sin(nxt_horz_angle);
+
+			osg::Vec3 left_bottom_vert = osg::Vec3(cur_normal_x*bottom_radius, cur_normal_y*bottom_radius, bottom_height);
+			osg::Vec3 right_bottom_vert = osg::Vec3(nxt_normal_x*bottom_radius, nxt_normal_y*bottom_radius, bottom_height);
+			osg::Vec3 left_top_vert = osg::Vec3(cur_normal_x*top_radius, cur_normal_y*top_radius, top_height);
+			osg::Vec3 right_top_vert = osg::Vec3(nxt_normal_x*top_radius, nxt_normal_y*top_radius, top_height);
+			osg::Vec3 left_bottom_normal = osg::Vec3(cur_normal_x*bottom_cos, cur_normal_y*bottom_cos, bottom_sin);
+			osg::Vec3 right_bottom_normal = osg::Vec3(nxt_normal_x*bottom_cos, nxt_normal_y*bottom_cos, bottom_sin);
+			osg::Vec3 left_top_normal = osg::Vec3(cur_normal_x*top_cos, cur_normal_y*top_cos, top_sin);
+			osg::Vec3 right_top_normal = osg::Vec3(nxt_normal_x*top_cos, nxt_normal_y*top_cos, top_sin);
+
+			vertices->push_back(left_bottom_vert);
+			vertices->push_back(right_bottom_vert);
+			vertices->push_back(right_top_vert);
+
+			vertices->push_back(left_bottom_vert);
+			vertices->push_back(right_top_vert);
+			vertices->push_back(left_top_vert);
+
+			normals->push_back(left_bottom_normal);
+			normals->push_back(right_bottom_normal);
+			normals->push_back(right_top_normal);
+
+			normals->push_back(left_bottom_normal);
+			normals->push_back(right_top_normal);
+			normals->push_back(left_top_normal);
+		}
+
+	}
+
+	osg::ref_ptr<osg::Vec4Array> colors = new osg::Vec4Array;
+	colors->push_back(osg::Vec4(1.0, 0.0, 0.0, 0.5));
+
+	// normals->push_back(osg::Vec3(0.0f, -1.0f, 0.0f));
+
+	osg::ref_ptr<osg::Geometry> sphere = new osg::Geometry;
+	sphere->setVertexArray(vertices.get());
+	sphere->setNormalArray(normals.get());
+	// sphere->setNormalBinding(osg::Geometry::BIND_OVERALL);
+	sphere->setColorArray(colors.get());
+	sphere->setColorBinding(osg::Geometry::BIND_OVERALL);
+	sphere->addPrimitiveSet(new osg::DrawArrays(GL_TRIANGLES, 0, vertices->size()));
+	osg::ref_ptr<osg::Geode> geode = new osg::Geode;
+	geode->addDrawable(sphere.get());
+	return geode.release();
+}
+```
+	- 从文件中添加着色器
+```
+	osg::Program* program = new osg::Program;
+
+	osg::ref_ptr<osg::Shader> vertObj = new osg::Shader(osg::Shader::VERTEX);
+	osg::ref_ptr<osg::Shader> fragObj = new osg::Shader(osg::Shader::FRAGMENT);
+	bool bret = vertObj->loadShaderSourceFromFile(radarVertPath.c_str());
+	bret = fragObj->loadShaderSourceFromFile(radarFragPath.c_str());
+	program->addShader(vertObj);
+	program->addShader(fragObj);
+	ss->setAttributeAndModes(program, osg::StateAttribute::ON);
+```
+
+##  5. <a name='Chapter07ViewingtheWorld'></a>Chapter 07 Viewing the World
+###  5.1. <a name='FrameLoop'></a>07_FrameLoop
 	- osgViewer::Viewer::getFrameStamp()::getFrameNumber(): 得到帧号
-* 07_HUD
+	- 帧循环
+```
+	while (!viewer.done())
+	{
+		viewer.frame();
+	}
+```
+###  5.2. <a name='HUD'></a>07_HUD
 	- 创建一个相机绘制 HUD 内容，相机有自己的矩阵，而后添加子节点
-* 07_MultipleScene(多窗口场景)
-	- osgViewer::View --- 创建一个单独的窗口，在其内绘制视图场景
+###  5.3. <a name='MultipleScene'></a>07_MultipleScene(多窗口场景)
+	- osgViewer::View --- 创建一个单独的窗口，在其内绘制视图场景, setupViewInWindow 设置窗口位置
 	- osgViewer::CompositeViewer::addView --- 添加这样的视图窗口
-* 07_MultiSampling(多重采样)
+###  5.4. <a name='MultiSampling'></a>07_MultiSampling(多重采样)
 	- osg::DisplaySettings::setNumMultiSamples() --- 设置多重采样
-* 07_RTT(渲染到纹理)
+```
+osg::DisplaySettings::instance()->setNumMultiSamples(4);
+```
+###  5.5. <a name='RTT'></a>07_RTT(渲染到纹理)
 	- osg::Camera::setRenderTargetImplementation() --- 设置渲染到帧缓存对象
 	- osg::Camera::attach() --- 渲染至纹理
 	- 从 osg::NodeVisitor 派生一个访问器, 替换其内使用的问题
 ```
-		osg::Texture* oldTexture = dynamic_cast<osg::Texture*>(ss->getTextureAttribute(0, osg::StateAttribute::TEXTURE));
-		if (oldTexture) ss->setTextureAttribute(0, _texture.get());
+class FindTextureVisitor : public osg::NodeVisitor
+{
+public:
+	FindTextureVisitor(osg::Texture* tex) : _texture(tex)
+	{
+		setTraversalMode(
+			osg::NodeVisitor::TRAVERSE_ALL_CHILDREN);
+	}
+
+	virtual void apply(osg::Node& node);
+	virtual void apply(osg::Geode& geode);
+	void replaceTexture(osg::StateSet* ss)
+	{
+		if (ss)
+		{
+			osg::Texture* oldTexture = dynamic_cast<osg::Texture*>(
+				ss->getTextureAttribute(0, osg::StateAttribute::TEXTURE)
+				);
+			if (oldTexture) ss->setTextureAttribute(
+				0, _texture.get());
+		}
+	}
+
+protected:
+	osg::ref_ptr<osg::Texture> _texture;
+};
+
+void FindTextureVisitor::apply(osg::Node& node)
+{
+	replaceTexture(node.getStateSet());
+	traverse(node);
+}
+void FindTextureVisitor::apply(osg::Geode& geode)
+{
+	replaceTexture(geode.getStateSet());
+	for (unsigned int i = 0; i < geode.getNumDrawables(); ++i)
+	{
+		replaceTexture(geode.getDrawable(i)->getStateSet());
+	}
+	traverse(geode);
+}
 ```
-	- osg::StateSet 调用 getTextureAttribute 以及osg::StateAttribute::TEXTURE 参数获得纹理.
-	- 替换所有 Node 和 Geode 的纹理, 如果为 Geode, 则替换其内所包含可渲染对象的所有纹理
-	- 步骤
-		- 创建一个纹理 osg::Texture
-		- 创建相机, 设置视口为纹理大小
-			- 背景颜色, clearMask, renderOrder
-			- setRenderTargetImplementation 为帧缓存
-			- attach 一个纹理
-			- setReferenceFrame
-				- setReferenceFrame( osg::Transform::ABSOLUTE_RF ) 等同于 glLoadMatrix. 要切换回去则用 osg::Transform::RELATIVE_RF
-			- setViewMatrixAsLookAt
-* 08_AnimateCharacter
-	- osgAnimation::BasicAnimationManager --- 派生自更新回调
+- osg::StateSet 调用 getTextureAttribute 以及osg::StateAttribute::TEXTURE 参数获得纹理.
+- 替换所有 Node 和 Geode 的纹理, 如果为 Geode, 则替换其内所包含可渲染对象的所有纹理
+- 步骤
+	- 创建一个纹理 osg::Texture
+	- 创建相机, 设置视口为纹理大小
+		- 背景颜色, clearMask, renderOrder
+		- setRenderTargetImplementation 为帧缓存
+		- attach 一个纹理
+		- setReferenceFrame
+		- setReferenceFrame( osg::Transform::ABSOLUTE_RF ) 等同于 glLoadMatrix. 要切换回去则用 osg::Transform::RELATIVE_RF
+		- setViewMatrixAsLookAt
+* 创建帧缓存对象
+```
+	int tex_width = 1024, tex_height = 1024;
+	osg::ref_ptr<osg::Texture2D> texture = new osg::Texture2D;
+	texture->setTextureSize(tex_width, tex_height);
+	texture->setInternalFormat(GL_RGBA);
+	texture->setFilter(osg::Texture2D::MIN_FILTER, osg::Texture2D::LINEAR);
+	texture->setFilter(osg::Texture2D::MAG_FILTER, osg::Texture2D::LINEAR);
+	osg::ref_ptr<osg::Camera> camera = new osg::Camera;
+	camera->setViewport(0, 0, tex_width, tex_height);
+	camera->setClearColor(osg::Vec4(0.0f, 0.0f, 0.0f, 0.0f));
+	camera->setClearMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	camera->setRenderOrder(osg::Camera::PRE_RENDER);
+	camera->setRenderTargetImplementation(osg::Camera::FRAME_BUFFER_OBJECT);
+	camera->attach(osg::Camera::COLOR_BUFFER, texture.get());
+	camera->setReferenceFrame(osg::Camera::ABSOLUTE_RF);
+```
+
+##  6. <a name='Chapter08AnimatingSceneObjects'></a>Chapter 08 Animating Scene Objects
+###  6.1. <a name='AnimateCharacter'></a>08_AnimateCharacter
+	- osgAnimation::BasicAnimationManager --- 派生自 osg::NodeCallback
 		- getAnimationList() --- 得到动画列表
 		- osgAnimation::Animation
-    		- playAnimation() --- 应用上面动画列表中的一个动画
-* 08_AnimationChannel
+    	- playAnimation() --- 应用动画列表中的一个动画
+	- 该动画内容保存在 osg 模型内
+
+###  6.2. <a name='AnimationChannel'></a>08_AnimationChannel
 	- osgAnimation::Vec3Keyframe, osgAnimation::QuatKeyframe 关键帧组成 osgAnimation::Vec3KeyframeContainer 和 osgAnimation::QuatKeyframeContainer 两个容器
 	- osgAnimation::Vec3LinearChannel/osgAnimation::QuatSphericalLinearChannel
 		- 对于 channel 其有自身的 sampler, 每个sampler 内又包含一个插值器和一个 keyframe 容器.
@@ -205,7 +537,7 @@
 		- 矩阵变换节点需要有个更新回调为 UpdateMatrixTransform 类型, 主要用途是使用 Animation 更新后的结果更新矩阵变换节点. 注意该矩阵变换节点使用的矩阵等于频道内的平移和旋转.
 		- 动画会包含所有需要更新的频道.
 		- 每个频道有自己的sampler, sampler 包含自己的插值器和关键帧容器.
-* 08_AnimationPath
+###  6.3. <a name='AnimationPath'></a>08_AnimationPath
 	- 实现动画路径
 	- osg::AnimationPath
 		- setLoopMode: 设置循环模式
@@ -213,7 +545,7 @@
 	- osg::AnimationPathCallback 节点回调
 		- setAnimationPath 设置路径(osg::AnimationPath)
 	- 通常设置为节点更新回调
-* 08_FadingIn
+###  6.4. <a name='FadingIn'></a>08_FadingIn
 	- 演示了 osg::Matrial 属性以及其相应的回调, 并演示了 osgAnimation::InOutCubicMotion
 	- 设置对象的状态属性更新回调
 	- osg::StateAttributeCallback 派生自 osg::Callback
@@ -229,7 +561,7 @@
 				- 纯基类函数 getValueInNormalizedRange, 第一个参数是时间比例(当前时间/总时间),第二个参数为返回的结果
 			- MathMotionTemplate 重写了函数 getValueInNormalizedRange, 调用了模板类的 getValueAt 函数
 		- 结构体 InOutCubicFunction 重写了 getValueAt 函数, 三次方来回运动
-* 08_Flashing
+###  6.5. <a name='Flashing'></a>08_Flashing
 	- 设置连续图像动画, 使用 osg::ImageSequence
 		- addImage() --- 添加图像 
 		- setLength() --- 设置时间长度
@@ -239,13 +571,15 @@
 		- data() 某一行列的数据指针
 	- osg::Texture2D 纹理
 		- setImage() 目标可以是 osg::ImageSequence
-* 08_GeometryDynamically
+###  6.6. <a name='GeometryDynamically'></a>08_GeometryDynamically
 	- 通过更新回调更改一个几何体, 该回调为 osg::Drawable::UpdateCallback 的派生类
 	- 同时演示了 osg::Drawable 的更新回调, 其更新回调重写的是 update() 函数
 	- 更新几何数组后调用函数 osg::Geometry::dirtyDisplayList() 和 osg::Geometry::dirtyBound() 更新显示列表和围绕盒
-* 08_SwitchUpdate
+###  6.7. <a name='SwitchUpdate'></a>08_SwitchUpdate
 	- 通过更新回调切换Switch节点子节点的状态
-* 09_DrivingCessna
+
+##  7. <a name='Chapter09InteractingwithOutsideElements'></a>Chapter 09 Interacting with Outside Elements 
+###  7.1. <a name='DrivingCessna'></a>09_DrivingCessna
 	- osg::Camera
 		- setAllowEventFocus() 是否允许其关联窗口产生的事件影响到该相机
 		- setViewMatrixAsLookAt() 设置视图矩阵
@@ -254,7 +588,7 @@
 	- osgGA::GUIEventHandler 派生窗口事件处理类
 		- 重写 bool handle() 函数
 			- osgGA::GUIEventAdapter 获取键盘鼠标事件
-* 09_GCTraits
+###  7.2. <a name='GCTraits'></a>09_GCTraits
 	- osg::GraphicsContext::Traits 创建一个 traits
 	- osg::GraphicsContext::createGraphicsContext 使用该 traits 创建一个窗口 osg::GraphicsContext
 	- osg::Camera 创建一个相机
@@ -262,7 +596,7 @@
 		- setProjectionMatrixAsPerspective 设置投影矩阵
 	- osgViewer::Viewer
 		- setCamera 设置相机
-* 09_PickingGeometry --- 选择框
+###  7.3. <a name='PickingGeometry---'></a>09_PickingGeometry --- 选择框
 	- 展示了如何创建选择框
 		- 线框,禁光照, 矩阵变换节点
 		- 通过矩阵变换绘制和移动线框
@@ -272,33 +606,38 @@
 	- 鼠标点击相交检测
 	- osgUtil::IntersectionVisitor 访问, 使用相机 accept 调用该 visitor
 	- osg::computeLocalToWorld 计算矩阵
-* 09_UserTimer --- 可以添加一个用户事件
+###  7.4. <a name='UserTimer---'></a>09_UserTimer --- 可以添加一个用户事件
 	- 本例是在 Frame 事件中添加用户事件
 	- osgGA::GUIEventAdapter::FRAME 可以处理帧事件
 	- viewer->getEventQueue()->userEvent() --- 添加一个用户事件
-* 09_Win32Handler --- Win32 API 和 osg
+###  7.5. <a name='Win32Handler---Win32APIosg'></a>09_Win32Handler --- Win32 API 和 osg
 	- WM_CREATE 事件创建一个 osgViewer 而后用线程推进
 	- 设置 traits->inheritedWindowData = windata(为窗口句柄)
-* 10_CustomFormat --- 自定义格式插件读写
+
+
+##  8. <a name='Chapter10SavingandLoadingFiles'></a>Chapter 10 Saving and Loading Files
+###  8.1. <a name='CustomFormat---'></a>10_CustomFormat --- 自定义格式插件读写
 	- 派生自 osgDB::ReaderWriter
 	- REGISTER_OSGPLUGIN 宏注册
-* 11_Billboard 公告板
+
+##  9. <a name='Chapter11DevelopingVisualComponents'></a>Chapter 11 Developing Visual Components
+###  9.1. <a name='Billboard'></a>11_Billboard 公告板
 	- osg::Billboard
 		- setMode: osg::Billboard::POINT_ROT_EYE
 		- addDrawable: 添加一个可绘制对象, 因为 Billboard 派生自 osg::Geode
-* 11_Outline 给物体添加轮廓线效果.
+###  9.2. <a name='Outline.'></a>11_Outline 给物体添加轮廓线效果.
 	- osgFX::Outline
 		- setWidth
 		- setColor
 		- addChild
-* 11_ParticleSystem 粒子系统
+###  9.3. <a name='ParticleSystem'></a>11_ParticleSystem 粒子系统
 	- osgParticle::ParticleSystem
 	- osg::PointSprite
 	- osgParticle::RandomRateCounter
 	- osgParticle::ModularEmitter
 	- osgParticle::AccelOperator
 	- osgParticle::ModularProgram
-* 11_Shadow 阴影效果
+###  9.4. <a name='Shadow'></a>11_Shadow 阴影效果
 	- osg::Node
 		- setNodeMask() --- 设置节点的 Mask
 	- osg::AnimationPathCallback 动画路径回调
@@ -313,7 +652,7 @@
 		- setShadowTechnique 设置阴影技术
 		- setReceivesShadowTraversalMask 设置阴影接受 mask
 		- setCastsShadowTraversalMask 设置阴影投射 mask
-* 11_Text 输出文字
+###  9.5. <a name='Text'></a>11_Text 输出文字
 	- osg::Camera 
 		- 设置投影矩阵
 		- 创建 HUD 相机用于绘制文本
@@ -322,7 +661,7 @@
 		- setCharacterSize
 		- setAxisAlignment
 		- setPosition
-* 11_Text3D --- 3D 字体, 当成一个 3D 模型
+###  9.6. <a name='Text3D---3D3D'></a>11_Text3D --- 3D 字体, 当成一个 3D 模型
 	- osgText::Text3D
 		- setFont
 		- setCharacterSize
@@ -330,7 +669,9 @@
 		- setAxisAlignment
 		- setPosition
 		- setText
-* 12_MultiThread --- 多线程程序
+
+##  10. <a name='Chapter12ImprovingRenderingEfficiency'></a>Chapter 12 Improving Rendering Efficiency
+###  10.1. <a name='MultiThread---'></a>12_MultiThread --- 多线程程序
 	- 本例演示键盘输入, 屏幕显示输入内容.
 	- OpenThreads::Thread 派生一个线程类
 	- OpenThreads::Mutex 互斥信号
@@ -338,14 +679,14 @@
 	- OpenThreads::startThread --- 开启线程
 	- osgText::Text
 		- setText: 设置文本
-* 12_Occluder
+###  10.2. <a name='Occluder'></a>12_Occluder
 	- osg::OccluderNode 派生自 osg::Group, 主要用于提供钩子添加 ConvexPlanarOccluders 至场景中.
 		- setOccluder(): 添加一个 ConvexPlanarOccluder
 	- osg::ConvexPlanarOccluder 其内有 ConvexPlanarPolygon&
 	- osg::ConvexPlanarPolygon
 		- add 添加顶点
 	- 只需要把 OccluderNode 添加至场景就可以实现遮挡
-* 12_QuadTree --- 使用 pageLOD 创建四叉树
+###  10.3. <a name='QuadTree---pageLOD'></a>12_QuadTree --- 使用 pageLOD 创建四叉树
 	- osg::HeightField 派生自 osg::Shape
 		- setSkirtHeight 设置边裙高度
 		- setOrigin 设置原点,这里设置左下角为原点
@@ -358,7 +699,7 @@
 		- setCenter
 		- setRadius
 		- setRange
-* 12_SharingTexture
+###  10.4. <a name='SharingTexture'></a>12_SharingTexture
 	- 当读写图像文件时, 如果之前已经读取则不用再次访问硬盘, 直接从内存中获取.
 	- osgDB::Registry::instance()->setReadFileCallback() 设置读文件回调
 	- osgDB::ReadFileCallback 读文件回调类, 重写 readImage 函数
@@ -366,7 +707,7 @@
 	- osgDB::Registry::instance()->getOrCreateSharedStateManager 创建共享状态管理器
 	- osgDB::SharedStateManager
 		- share
-* 12_ThreadingModel
+###  10.5. <a name='ThreadingModel'></a>12_ThreadingModel
 	- osgViewer::ViewerBase::ThreadingModel 线程模型
 		- osgViewer::ViewerBase::AutomaticSelection
 		- osgViewer::ViewerBase::SingleThreaded
